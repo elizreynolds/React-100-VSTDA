@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import Todoitem from './Todoitem';
 
 export default class TodoInput extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
-        const {items, handleDelete, handleEdit } = this.props;
+        const {items, handleDelete, handleEdit, editItem } = this.props;
         return (
            <ul className="list-group mt-5">
                <h3 className="text-caapitalize text-center">View Todo List</h3>
@@ -15,12 +18,10 @@ export default class TodoInput extends Component {
                       handleDelete={()=> handleDelete(item.id)}
                       handleEdit={()=> handleEdit(item.id)}
                       />
-                    );
+                      );
                   })} 
-           <button 
-            type="button" 
-            className="btn btn-danger btn-block text-capitalize mt-5">Save</button>
+                    
            </ul>
-        );
+                  );
     }
 }

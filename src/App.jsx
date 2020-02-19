@@ -11,7 +11,7 @@ class App extends Component {
     items: [],
     id: uuid(),
     item: '', 
-    editItem: false
+    editItem: false,
   }};
 
 handleChange(e) {
@@ -46,12 +46,15 @@ handleDelete(id) {
 
 handleEdit(id) {
   const filteredItems = this.state.items.filter(item => item.id !== id);
-  const selectedItem = this.state.item.find(item => item.id === id)
+  const newItem = {id: this.state.id, title: this.state.item};
+  const updatedItems = [...this.state.items, newItem];
+  const selectedItem = this.state.items.find(item => item.id === id);
+  
   this.setState({
-    items: filteredItems,
+    items: filteredItems, updatedItems,
     item: selectedItem.title,
     editItem: true,
-    id:id
+    id: id,
   });
 };
 
@@ -74,6 +77,7 @@ handleEdit(id) {
           items={this.state.items}
           handleDelete={this.handleDelete.bind(this)}
           handleEdit={this.handleEdit.bind(this)}
+          editItem={this.state.editItem}
           />  
           </div>     
         </div>
